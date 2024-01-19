@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='listado_videojuegos.css') }}"
+    />
+    <title>Listado Videojuegos</title>
+  </head>
+
+  <body>
+    {% include "menu.html"%}
+    <div><a href="registrar-videojuego">Nuevo videojuego</a></div>
+    <h2>listado de videojuegos</h2>
+    <div class="contenedor-items">
+      {% for v in videojuegos %}
+      <div class="item" *ngFor="let v of videojuegos">
+        <h3><span>{{v.nombre}}</span></h3>
+        <img alt="imagen del producto" class="imagen-item" src="" />
+        <p>Precio: <span>{{v.precio}}</span>€</p>
+        <p>Plataforma: <span>{{v.plataforma}}</span></p>
+        <a
+          href="borrar-videojuego/{{v.id}}"
+          onclick="confirm('Estas seguro/a?')"
+          >Borrar producto</a
+        >
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
