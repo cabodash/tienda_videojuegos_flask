@@ -9,7 +9,7 @@ def registrar_videojuego( nombre, descripcion , precio , plataforma, genero, des
     conexion.commit()
     cursor.close()
     conexion.close()
-    return True
+    return cursor.lastrowid #Devuelve el id de la ultima insercion
 
 
 
