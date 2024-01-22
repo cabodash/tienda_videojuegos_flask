@@ -1,0 +1,33 @@
+<div class="contenedor-detalles">
+    <h2 class="nombre">{{videojuego.nombre}}</h2>
+    <div class="cabecera">
+        <img class="imagen-detalles" src="/web-services/imagen-videojuego/{{videojuego.id}}">
+        <div class="textos">
+            <p><span>{{videojuego.plataforma}}</span></p>
+            <p>Precio: <span>{{videojuego.precio}}€</span></p>
+            <button class="btn-primary" (click)="agregarAlCarrito()">Añadir al carrito</button>
+        </div>
+    </div>
+    <div class="separador"></div>
+    <div class="mas-datos">
+        <div class="dato">
+            <h2>Descripcion</h2>
+            <p>{{videojuego.descripcion}}</p>
+        </div>
+        <div class="separador2"></div>
+        <div class="dato">
+            <h4>Género</h4>
+            <p>{{videojuego.genero}}</p>
+        </div>
+        <div class="separador2"></div>
+        <div class="dato">
+            <h4>Desasrrollador</h4>
+            <p>{{videojuego.desarrollador}}</p>
+        </div>
+        <div class="separador2"></div>
+        <div class="dato">
+            <h4>Fecha de lanzamiento</h4>
+            <p>{{videojuego.fecha_lanzamiento}}</p>
+        </div>
+    </div>
+</div>

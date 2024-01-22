@@ -1,0 +1,47 @@
+.carrito{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 40px;
+}
+.contenedor-productos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 1rem;
+}
+.productos{
+    width: 300px;
+    background-color: #303134;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    gap: 1rem;
+}
+.enlaces{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+.vacio{
+    margin-top: 30px;
+}
+.vacio a{
+    color: #0039a3;
+}
+.vacio a:hover{
+    color: #0059ff;
+}
+.vacio a:active {
+    color: #3a79ec;
+}

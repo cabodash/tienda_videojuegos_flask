@@ -1,4 +1,5 @@
 import model.conexion as conn
+from flask import session
 
 def registrar_videojuego( nombre, descripcion , precio , plataforma, genero, desarrollador, fecha_lanzamiento):
     conexion = conn.conectar()
@@ -32,3 +33,16 @@ def borrar_videojuego(id):
     cursor.close()
     conexion.close()
     return True
+
+
+def obtener_videojuego_por_id(id):
+    conexion = conn.conectar()
+    sql = "SELECT * FROM videojuegos WHERE id = %s"
+    cursor = conexion.cursor(dictionary=True)
+    cursor.execute(sql, (id,))
+    videojuego = cursor.fetchone()
+    cursor.close()
+    conexion.close()
+    return videojuego
+
+

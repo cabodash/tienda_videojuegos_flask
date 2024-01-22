@@ -1,0 +1,17 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1em;
+    background-color: #0039a3;
+    padding: 10px;
+}
+.last{
+    display: flex;
+    justify-content: end;
+    flex: 1;
+}
+
+
+

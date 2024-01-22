@@ -1,0 +1,37 @@
+<form class="formulario" action="registrar_producto.php" method="post" enctype="multipart/form-data">
+    <h2>Rellena los datos de tu pedido</h2>
+
+    <div class="input-box no-error">
+        <input type="text" name="nombre" [(ngModel)]="pedido.nombre" [ngModelOptions]="{standalone: true}" required>
+        <label for="nombre">Nombre</label>
+    </div>
+
+    <div class="input-box no-error">
+        <input type="text" name="apellidos" [(ngModel)]="pedido.apellidos" [ngModelOptions]="{standalone: true}"
+            required>
+        <label for="apellidos">Apellidos</label>
+    </div>
+
+    <div class="textarea-box no-error">
+        <textarea name="direccion" [(ngModel)]="pedido.direccion" [ngModelOptions]="{standalone: true}"
+            required></textarea>
+        <label for="direccion">Direccion completa de envio</label>
+    </div>
+
+    <div class="input-box no-error">
+        <input type="text" name="tarjeta" [(ngModel)]="pedido.tarjeta" [ngModelOptions]="{standalone: true}" required>
+        <label for="tarjeta">Numero de tarjeta de credito</label>
+        <p class="suggestion">(no insertar valores reales)</p>
+    </div>
+
+    <div class="textarea-box no-error">
+        <textarea name="comentario" [(ngModel)]="pedido.comentario" [ngModelOptions]="{standalone: true}"
+            required></textarea>
+        <label for="comentario">Comentario adicional</label>
+    </div>
+
+    <button class="btn-primary" (click)="finalizarPedido()">Finalizar pedido</button>
+
+    
+
+</form>
