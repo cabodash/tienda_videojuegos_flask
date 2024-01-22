@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/inicio.css') }}"
+    />
     <title>Document</title>
 </head>
 
@@ -11,7 +16,7 @@
     <form class="formulario" action="guardar-nuevo-videojuego" method="post" enctype="multipart/form-data">
         <h2>Registrar Videojuego</h2>
 
-        <img class="preview videojuego-img" id="preview-img" src="images/default_game.png" alt="Imagen por defecto">
+        <img class="preview videojuego-img" id="preview-img" src="/static/img/default_game.png" alt="Imagen por defecto">
 
         <label class="fileInput">
             <span>Foto Portada: Selecciona o arrastra una Foto</span>
