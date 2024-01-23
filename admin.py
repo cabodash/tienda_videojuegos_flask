@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask import Flask, render_template, request, redirect, url_for
 import model.repositorio_tienda as repo_tienda
-from app_flask import app
+from app import app
 import os
-
 
 ruta_admin = "/admin"
 
