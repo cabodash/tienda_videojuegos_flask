@@ -4,7 +4,7 @@
         <div class="contenedor-productos">
             <div class="productos" *ngFor="let vc of videojuegosCarrito">
                 <h3>{{vc.videojuego.nombre}}</h3>
-                <img class="imagen-item" src="/web-services/imagen-videojuego/{{vc.videojuego.id}}">
+                <img alt="imagen de producto: {{vc.videojuego.nombre}}" class="imagen-item" src="/imagen-videojuego/{{vc.videojuego.id}}">
                 <p>Precio/Unidad: {{vc.videojuego.precio}}€</p>
                 <p>Cantidad: {{vc.cantidad}}</p>
                 <div class="opciones-item">

@@ -69,3 +69,5 @@ def obtener_productos_carrito(productos_sesion):
     conexion.close()
     return respuesta
 
+
+

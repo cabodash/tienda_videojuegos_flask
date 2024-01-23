@@ -24,7 +24,7 @@
       {% for v in videojuegos %}
       <div class="item" *ngFor="let v of videojuegos">
         <h3><span>{{v.nombre}}</span></h3>
-        <img alt="imagen del producto" class="imagen-item" src="/web-services/imagen-videojuego/{{v.id}}" />
+        <img alt="imagen del producto" class="imagen-item" src="/imagen-videojuego/{{v.id}}" />
         <p>Precio: <span>{{v.precio}}</span>€</p>
         <p>Plataforma: <span>{{v.plataforma}}</span></p>
         <p>Desarrollador: <span>{{v.desarrollador}}</span></p>

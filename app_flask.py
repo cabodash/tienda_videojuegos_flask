@@ -4,9 +4,15 @@ import os
 
 from app import app
 
+#-----   Ruta de Inicio o raiz   -----#
+@app.route("/")
+def inicio():
+    return render_template("index.html")
+
+
 # Importa los módulos que definen las rutas después de crear la aplicación
 import admin
-import webservices
+import web_services
+import image_service
 
-app.config['DEBUG'] = True
-app.run()
+app.run(debug=True)

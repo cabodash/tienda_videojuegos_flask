@@ -40,7 +40,7 @@ export class TiendaService {
   }
   obtenerVideojuegosCarrito(): Observable<VideojuegoCarrito[]> {
     return this.http.get<VideojuegoCarrito[]>(
-      `${this.ruta_webservices}obtener-videojuegos-carrito`
+      `${this.ruta_webservices}obtener-productos-carrito`
     );
   }
   registrarPedido(p: Pedido): Observable<string> {
@@ -56,10 +56,11 @@ export class TiendaService {
     );
   }
 
-  borrarProducto(idVideojuego: number): Observable<string> {
+  borrarProducto(id: number): Observable<string> {
+    const data = { id: id }; // Crear un objeto con la propiedad id
     return this.http.post<string>(
       this.ruta_webservices + 'borrar-producto',
-      idVideojuego
+      data  // Enviar el objeto en lugar del id directamente
     );
   }
 }
