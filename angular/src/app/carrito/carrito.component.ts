@@ -43,8 +43,8 @@ export class CarritoComponent {
     this.servicioTienda.borrarProducto(idVideojuego)
     .subscribe(res => {
       if (res == "ok") {
-        alert("Producto borrado")
-        location.reload();
+        alert("Producto borrado");
+        this.videojuegosCarrito = this.videojuegosCarrito.filter(i => i.videojuego.id !== idVideojuego);
       } else {
         alert("No se pudo borrar el videojuego");
       }
