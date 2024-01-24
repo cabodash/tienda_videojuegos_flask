@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, session, send_file
 import model.repositorio_tienda as repo_tienda
 from app import app
 import os
+import re
 ruta_webservices = "/web-services/"
 
 
@@ -71,9 +72,22 @@ def borrar_producto():
 
 @app.route(f"{ruta_webservices}vaciar-carrito")
 def ws_vaciar_carrito():
-    if "productos" in session:
-        session["productos"] = []
-    return jsonify("ok")
+    session.clear()
+    return jsonify(["ok"])
+
+
+
+@app.route(f"{ruta_webservices}registrar-pedido", methods = ["POST"])
+def realizar_pedido():
+    pedido = request.get_json()
+    nombre = pedido["nombre"]
+    apellidos = pedido["apellidos"]
+    direccion = pedido["direccion"]
+    tarjeta = pedido["tarjeta"]
+    comentario = pedido["comentario"]
+    repo_tienda.registrar_pedido(nombre, apellidos, direccion, tarjeta, comentario, session["productos"])
+    return jsonify(["ok"])
+
 
 
 

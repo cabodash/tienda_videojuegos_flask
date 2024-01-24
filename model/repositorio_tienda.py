@@ -70,4 +70,38 @@ def obtener_productos_carrito(productos_sesion):
     return respuesta
 
 
+def registrar_pedido(nombre, apellidos, direccion, tarjeta, comentario, productos_carrito):
+    conexion = conn.conectar()
+    sql = "insert into pedidos (nombre, apellidos, direccion, tarjeta, comentario) values(%s,%s,%s,%s,%s)"
+    cur = conexion. cursor()
+    cur.execute(sql, ( nombre, apellidos, direccion, tarjeta, comentario ) )
+    id_pedido = cur.lastrowid
+    #registramos en productopedido cada uno de los productos del pedido
+    for ps in productos_carrito:
+        id_producto = ps["id_producto"]
+        cantidad_producto = ps["cantidad_producto"]
+        sql = "insert into productopedido (id_pedido, id_producto, cantidad) values (%s,%s,%s)"
+        cur.execute(sql, (id_pedido, id_producto, cantidad_producto))
+
+    conexion.commit()
+    cur.close()
+    conexion.close()
+    
+
+    
+def obtener_pedidos():
+    conexion = conn.conectar()
+    sql ='''SELECT p.id, p.nombre as nombre_pedido, p.apellidos, p.direccion, p.tarjeta, p.comentario, v.nombre as nombre_videojuego, v.precio, v.descripcion 
+        FROM videojuegos as v, productopedido as pp, pedidos as p 
+        WHERE p.id =  pp.id_pedido and v.id = pp.id_producto 
+        ORDER BY p.id DESC'''
+    cur = conexion.cursor(dictionary = True)
+    cur.execute(sql)
+    pedidos = cur.fetchall()
+    cur.close()
+    conexion.close()
+    return pedidos
+    
+
+
 

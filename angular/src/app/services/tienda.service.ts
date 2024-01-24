@@ -45,7 +45,7 @@ export class TiendaService {
   }
   registrarPedido(p: Pedido): Observable<string> {
     return this.http.post<string>(
-      this.ruta_webservices + 'realizar-pedido',
+      this.ruta_webservices + 'registrar-pedido',
       p
     );
   }

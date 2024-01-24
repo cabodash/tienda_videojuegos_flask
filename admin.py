@@ -57,4 +57,10 @@ def borrar_videojuego(id):
     return redirect(url_for("listar_videojuegos"))
 
 
+@app.route(f"{ruta_admin}/listar-pedidos")
+def listar_pedidos():
+    pedidos_completo = repo_tienda.obtener_pedidos()
+    return render_template("listar_pedidos.html", pedidos = pedidos_completo)
+
+
 
