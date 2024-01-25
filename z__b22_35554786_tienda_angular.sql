@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: sql212.byetcluster.com
--- Tiempo de generación: 22-01-2024 a las 11:13:46
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 7.2.22
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-01-2024 a las 20:23:39
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,34 +19,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `b22_35554786_tienda_angular`
+-- Base de datos: `bd_tienda_flask`
 --
 
+
+CREATE DATABASE IF NOT EXISTS bd_tienda_flask;
+use bd_tienda_flask;
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pedidos`
 --
 
-CREATE DATABASE IF NOT EXISTS bd_tienda_flask;
-USE bd_tienda_flask;
-
 CREATE TABLE `pedidos` (
   `id` int(11) UNSIGNED NOT NULL,
   `nombre` varchar(191) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `apellidos` varchar(191) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `direccion` varchar(191) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `tarjeta` double DEFAULT NULL,
-  `comentario` varchar(191) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL
+  `tarjeta` bigint(20) DEFAULT NULL,
+  `comentario` varchar(191) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `ip` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `user_agent` varchar(1200) COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`id`, `nombre`, `apellidos`, `direccion`, `tarjeta`, `comentario`) VALUES
-(2, 'alejandro', 'cabo guisado', 'calle de las encinas 27, municipio, madrid', 1.234124312341234e15, 'comentario adicional'),
-(3, 'alejandro', 'cabo guisado', 'calle de las encinas 27, municipio, madrid', 1.234124312341234e15, 'comentario adicional');
+INSERT INTO `pedidos` (`id`, `nombre`, `apellidos`, `direccion`, `tarjeta`, `comentario`, `ip`, `user_agent`) VALUES
+(2, 'alejandro', 'cabo guisado', 'calle de las encinas 27, municipio, madrid', 1234123412341234, 'comentario adicional', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+(3, 'alejandro', 'cabo guisado', 'calle de las encinas 27, municipio, madrid', 1234123412341234, 'comentario adicional', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+(10, 'asdasda', 'asdasdad', 'dasdadasd', 1234123412341234, 'asdadadada', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+(11, 'asdasda', 'asdasdad', 'dasdadasd', 1234123412341234, 'asdadadada', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+(12, 'asdfasdf', 'asdfasdf', 'asdfasdf', 1234123412341234, 'asdfasdfasdf', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+(13, 'ahsjkdfgjasd', 'kajsdbfasdf', 'aasdkjfh iugahsdi hiuasd', 1234123412341234, 'aashdbf hjkasdhjfgaishdgf ihagsdyihfgihasdgfhijagsdhjfgajhsdgfjhagsjhdfg jhasgdjkh gahsjg f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -71,7 +77,11 @@ INSERT INTO `productopedido` (`id`, `id_pedido`, `id_producto`, `cantidad`) VALU
 (4, 2, 5, 3),
 (5, 2, 6, 1),
 (6, 3, 1, 1),
-(7, 3, 4, 2);
+(7, 3, 4, 2),
+(10, 10, 3, 1),
+(11, 11, 3, 1),
+(12, 12, 3, 1),
+(13, 13, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -141,13 +151,13 @@ ALTER TABLE `videojuegos`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `productopedido`
 --
 ALTER TABLE `productopedido`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `videojuegos`
