@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "outputHashing": "none", 
             "outputPath": "dist/angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -36,9 +37,10 @@
                   "maximumError": "5mb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "none"
             },
             "development": {
+              "outputHashing": "none",
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
