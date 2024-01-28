@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { ListadoComponent } from './listado/listado.component';
+import { VideojuegosComponent } from './videojuegos/videojuegos.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, ListadoComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, VideojuegosComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

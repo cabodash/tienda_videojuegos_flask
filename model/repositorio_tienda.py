@@ -14,11 +14,18 @@ def registrar_videojuego( nombre, descripcion , precio , plataforma, genero, des
 
 
 
-def obtener_videojuegos():
+def obtener_videojuegos(busqueda=None):
+    print(busqueda)
     conexion = conn.conectar()
-    sql = "SELECT * FROM videojuegos"
+    sql = "SELECT * FROM videojuegos WHERE nombre LIKE %s OR descripcion LIKE %s OR precio LIKE %s OR plataforma LIKE %s OR genero LIKE %s OR desarrollador LIKE %s OR fecha_lanzamiento LIKE %s"
+    #Comprobamos si viene elgun parametro de busqueda
+    if busqueda is None:
+        valores = ('%', '%', '%', '%', '%', '%', '%')
+    else:
+        busqueda = f"%{busqueda}%"  # Permitir que la búsqueda no sea exacta
+        valores = (busqueda, busqueda, busqueda, busqueda, busqueda, busqueda, busqueda)
     cursor = conexion.cursor(dictionary=True)
-    cursor.execute(sql)
+    cursor.execute(sql, valores)
     videojuegos = cursor.fetchall()
     cursor.close()
     conexion.close()

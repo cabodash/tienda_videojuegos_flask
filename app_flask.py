@@ -14,6 +14,7 @@ def inicio():
 # Importa los módulos que definen las rutas después de crear la aplicación
 import admin
 import web_services
+import video_service
 import image_service
 
 app.run(debug=True)

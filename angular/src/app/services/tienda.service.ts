@@ -15,13 +15,13 @@ export class TiendaService {
   //Todas las operaciones con el servidor se realizaran desde este servicio
   constructor(private http: HttpClient) { }
 
-  obtenerVideojuegos(): Observable<Videojuego[]> {
+  obtenerVideojuegos(busqueda: string | null): Observable<Videojuego[]> {
     console.log(
       'comunicar con el servicioWeb para obtener el json de videojuegos'
     );
 
-    return this.http.get<Videojuego[]>(
-      this.ruta_webservices + 'obtener-videojuegos'
+    return this.http.post<Videojuego[]>(
+      this.ruta_webservices + 'obtener-videojuegos', { busqueda }
     );
   }
   obtenerVideojuegoPorId(id: number): Observable<Videojuego> {

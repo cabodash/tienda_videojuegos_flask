@@ -13,9 +13,14 @@ def ws():
 
 
 
-@app.route(f"{ruta_webservices}obtener-videojuegos")
+@app.route(f"{ruta_webservices}obtener-videojuegos", methods = ["POST"])
 def ws_obtener_videojuegos():
-    return jsonify(repo_tienda.obtener_videojuegos())
+    #Comprobamos si viene algun parametro de busqueda
+    if request.get_json():
+        busqueda = request.get_json()["busqueda"]
+    else:
+        busqueda = None
+    return jsonify(repo_tienda.obtener_videojuegos(busqueda))
 
 
 

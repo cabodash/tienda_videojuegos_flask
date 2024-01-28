@@ -1,0 +1,35 @@
+<div class="contenedor-listado">
+    <div class="contenedor-buscador">
+      <img alt class="lupa" src="/static/img/lupa.png" />
+      <input type="text" id="buscador" placeholder="Buscar" autocomplete="off" (input)="onInput($event)"/>
+      <span style="z-index: 1;" id="borrar-texto-busqueda">
+        <img alt id="imagen-borrar" class="borrar-busqueda" src="/static/img/x.svg" />
+      </span>
+    </div>
+    <div class="listado-videojuegos">
+        <div class="item-listado" *ngFor="let v of videojuegos">
+            <div class="reproductor" #video (click)="verDetalles(v)">
+                <img alt="imagen de producto: {{v.nombre}}" class="imagen-item" src="/imagen-videojuego/{{v.id}}" loading="lazy">
+                <video class="video-item" id="videoItem" width="100%" height="100%" >
+                    <source src="/video-videojuego/{{v.id}}" type="video/webm">
+                    Tu navegador no soporta el tag de video.
+                </video>
+            </div>
+            <div class="item-enlaces">
+                <p class="nombre-juego">{{v.nombre}}</p>
+                <p class="precio"><span>{{v.precio}}</span> &euro;</p>
+            </div>
+        </div>
+        
+    </div>
+  
+    <div>
+      <div class="paginacion">
+        <a id="enlace_anterior" href="#" class="anterior ">Anterior</a>
+        <a id="enlace_siguiente" href="#" class="siguiente ">Siguiente</a>
+      </div>
+      <div class=" total">Comienzo: <span id="comienzo_resultado"></span>
+      </div>
+      <div class="total">Total: <span id="total_resultados"></span></div>
+    </div>
+  </div>
