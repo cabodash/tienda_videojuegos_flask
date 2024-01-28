@@ -1,4 +1,4 @@
-import { Component, ElementRef, Injectable, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, Injectable, QueryList, ViewChildren } from '@angular/core';
 import { Videojuego } from '../model/videojuego';
 import { TiendaService } from '../services/tienda.service';
 import { Router } from '@angular/router';
@@ -11,10 +11,14 @@ import { NgFor } from '@angular/common';
   templateUrl: './videojuegos.component.html',
   styleUrl: './videojuegos.component.css'
 })
-export class VideojuegosComponent {
+export class VideojuegosComponent implements AfterViewChecked {
   videojuegos: Videojuego[] = {} as Videojuego[];
   timeout: any;
   @ViewChildren('video') videojuegosItems: QueryList<ElementRef>;
+  
+  
+  private ejecutarFuncion = true;
+
 
 
   constructor(private servicioTienda: TiendaService, private router: Router) { 
@@ -32,8 +36,11 @@ export class VideojuegosComponent {
    this.prepararReproductores();
   }
   
-  ngOnChanges() {
-    this.prepararReproductores();
+  ngAfterViewChecked() {
+    if (this.ejecutarFuncion) {
+      this.prepararReproductores();
+      this.ejecutarFuncion = false;
+    }
   }
 
 
@@ -56,6 +63,7 @@ export class VideojuegosComponent {
     let busqueda = (document.getElementById('buscador') as HTMLInputElement)?.value;
     this.servicioTienda.obtenerVideojuegos(busqueda).subscribe((res) => {
       this.videojuegos = res;
+      this.ejecutarFuncion = true;
     });
   }
 
@@ -63,6 +71,9 @@ export class VideojuegosComponent {
     //Mostrar el componente de detalles Videojuego para el videojuego recibido
     this.router.navigate(['detallesVideojuego', v.id]);
   }
+
+
+  
 
 //Funcion para preparar la reproduccion de los videos 
   prepararReproductores(){
