@@ -1,13 +1,14 @@
-import { AfterViewChecked, Component, ElementRef, Injectable, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Videojuego } from '../model/videojuego';
 import { TiendaService } from '../services/tienda.service';
 import { Router } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
+import { PrepararReproductores } from '../utils/PrepararReproductores';
 
 @Component({
   selector: 'app-videojuegos',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './videojuegos.component.html',
   styleUrl: './videojuegos.component.css'
 })
@@ -16,10 +17,7 @@ export class VideojuegosComponent implements AfterViewChecked {
   timeout: any;
   @ViewChildren('video') videojuegosItems: QueryList<ElementRef>;
   
-  
   private ejecutarFuncion = true;
-
-
 
   constructor(private servicioTienda: TiendaService, private router: Router) { 
     this.videojuegosItems = new QueryList<ElementRef>();
@@ -33,13 +31,15 @@ export class VideojuegosComponent implements AfterViewChecked {
   }
 
   ngAfterViewInit() {
-   this.prepararReproductores();
+   PrepararReproductores.prepararReproductores(this.videojuegosItems);
   }
   
+
+  //Cada vez que se actualice la vista si es por una busqeda vuelve a cargar los reproductores (Por medio del uso de la variable ejecutarFuncion)
   ngAfterViewChecked() {
     if (this.ejecutarFuncion) {
-      this.prepararReproductores();
-      this.ejecutarFuncion = false;
+      PrepararReproductores.prepararReproductores(this.videojuegosItems);
+      this.ejecutarFuncion = false; // De no limitar la ejecucuin de la funcion, se genera un bucle infinito y deja la pagina sin responder
     }
   }
 
@@ -47,22 +47,6 @@ export class VideojuegosComponent implements AfterViewChecked {
   actualizarListado() {
     this.servicioTienda.obtenerVideojuegos(null).subscribe((res) => {
       this.videojuegos = res; //En angular cuando queremos indicar que hacer cuando se obtenga una respuesta de la comunicacion con un servicio web se usa la formula indicada
-    });
-  }
-
-  onInput(event: any) {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-    this.timeout = setTimeout(() => {
-      this.buscar();
-    }, 500);
-  }
-
-  buscar() {
-    let busqueda = (document.getElementById('buscador') as HTMLInputElement)?.value;
-    this.servicioTienda.obtenerVideojuegos(busqueda).subscribe((res) => {
-      this.videojuegos = res;
       this.ejecutarFuncion = true;
     });
   }
@@ -72,48 +56,34 @@ export class VideojuegosComponent implements AfterViewChecked {
     this.router.navigate(['detallesVideojuego', v.id]);
   }
 
+  //Timer para ejecutaqr la busqueda medio segundo despues de que el usuario deje de teclear
+  onInput(event: any) {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+    this.timeout = setTimeout(() => {
+      this.buscar();
+    }, 500);
+  }
 
-  
-
-//Funcion para preparar la reproduccion de los videos 
-  prepararReproductores(){
-    this.videojuegosItems.forEach(videojuegosItems => {
-      const video = videojuegosItems.nativeElement.querySelector('video');
-      const reproductor = videojuegosItems.nativeElement;
-  
-      if (video) {
-        video.addEventListener('canplaythrough', () => {
-          video.play();
-        });
-  
-        video.pause();
-  
-        reproductor.addEventListener('mouseenter', () => {
-          if (video && video.readyState >= 2) {
-            video.play();
-            reproductor.querySelector('.imagen-item').style.opacity = 0;
-            reproductor.querySelector('.imagen-item').style.visibility = 'hidden';
-            reproductor.querySelector('.video-item').style.opacity = 1;
-            reproductor.querySelector('.video-item').style.visibility = 'visible';
-          }
-        });
-  
-        reproductor.addEventListener('mouseleave', () => {
-          if (video && video.readyState >= 2) {
-            video.pause();
-            reproductor.querySelector('.imagen-item').style.opacity = 1;
-            reproductor.querySelector('.imagen-item').style.visibility = 'visible';
-            reproductor.querySelector('.video-item').style.opacity = 0;
-            reproductor.querySelector('.video-item').style.visibility = 'hidden';
-          }
-        });
-  
-        video.addEventListener('ended', () => {
-          video.currentTime = 0;
-          video.play();
-        });
-      }
+  //Actualiza el valor de la variable videojuegos filtrado por busqueda
+  buscar() {
+    let busqueda = (document.getElementById('buscador') as HTMLInputElement)?.value;
+    this.servicioTienda.obtenerVideojuegos(busqueda).subscribe((res) => {
+      this.videojuegos = res;
+      this.ejecutarFuncion = true;
     });
   }
+
+  //Funcion para borrar el contenido del input buscador al hacer click en la imagen de borrar
+  borrarBusqueda() {
+    (document.getElementById('buscador') as HTMLInputElement).value = '';
+    this.buscar();
+  }
+
+
+
+
+
 
 }

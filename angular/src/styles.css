@@ -37,6 +37,20 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Enlaces personalizados */
+.vacio{
+  margin-top: 30px;
+}
+.vacio a{
+  color: #0039a3;
+}
+.vacio a:hover{
+  color: #0059ff;
+}
+.vacio a:active {
+  color: #3a79ec;
+}
+
 /* Listado administracion */
 .cont-listado {
     display: flex;
@@ -74,3 +88,106 @@ body {
     border-radius: 10px;
     object-fit: cover;
 }
+
+
+
+
+
+
+/*  Estilos del mensaje emergente  */
+.unsee{
+    visibility: hidden;
+}
+.error__ {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: fit-content;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    background: #EF665B;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px -3px #111;
+  }
+  
+  .error__icon {
+    width: 20px;
+    height: 20px;
+    transform: translateY(-2px);
+    margin-right: 8px;
+  }
+  
+  .error__icon path {
+    fill: #fff;
+  }
+  
+  .error__title {
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    margin-right: 5px;
+  }
+  
+  .error__close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  
+  .error__close path {
+    fill: #fff;
+  }
+
+
+  /* Mensasje para decir que se añadio el producto al carrito */
+  .info__ {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: fit-content;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    background: #509AF8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px -3px #111;
+  }
+  
+  .info__icon {
+    width: 20px;
+    height: 20px;
+    transform: translateY(-2px);
+    margin-right: 8px;
+  }
+  
+  .info__icon path {
+    fill: #fff;
+  }
+  
+  .info__title {
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    margin-right: 5px;
+  }
+  
+  .info__close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  
+  .info__close path {
+    fill: #fff;
+  }

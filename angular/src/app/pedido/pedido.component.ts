@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TiendaService } from '../services/tienda.service';
 import { Router } from '@angular/router';
 import { Validador } from '../validations/validador';
-import { formulario_inputs } from '../utils/formulario_inputs';
+import { formulario_inputs } from '../utils/FuncionalidadInputs';
 
 @Component({
   selector: 'app-pedido',

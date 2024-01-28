@@ -33,15 +33,3 @@
     align-items: center;
     gap: 4rem;
 }
-.vacio{
-    margin-top: 30px;
-}
-.vacio a{
-    color: #0039a3;
-}
-.vacio a:hover{
-    color: #0059ff;
-}
-.vacio a:active {
-    color: #3a79ec;
-}

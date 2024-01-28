@@ -19,6 +19,13 @@
         "logLevel": "debug",
         "changeOrigin": true,
         "pathRewrite": {"^/video-videojuego":""}
+    },
+    "/static/img/":{
+        "target":"http://127.0.0.1:5000/static/img/",
+        "secure": false, 
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {"^/static/img":""}
     }
 
 }

@@ -1,10 +1,21 @@
 <div class="contenedor-detalles">
     <h2 class="nombre">{{videojuego.nombre}}</h2>
     <div class="cabecera">
-        <img alt="imagen de producto: {{videojuego.nombre}}" class="imagen-detalles" src="/imagen-videojuego/{{videojuego.id}}">
-        <div class="textos">
+        <div class="reproductor" #video>
+            <img alt="imagen de producto: {{videojuego.nombre}}" class="imagen-item" src="/imagen-videojuego/{{videojuego.id}}" loading="lazy">
+            <video class="video-item" id="videoItem" width="100%" height="100%" >
+                <source src="/video-videojuego/{{videojuego.id}}" type="video/webm">
+                Tu navegador no soporta el tag de video.
+            </video>
+        </div>
+        <div class="textos"> <!-- style="background-image: url(/imagen-videojuego/{{videojuego.id}});"-->
             <p><span>{{videojuego.plataforma}}</span></p>
             <p>Precio: <span>{{videojuego.precio}}€</span></p>
+            <div class="contenedor-cantidad">
+                <img id="restar" src="/static/img/restar.png" alt="" (click)="disminuirCantidad()">
+                <p id="cantidad">{{cantidad}}</p>
+                <img id="anadir" src="/static/img/anadir.png" alt="" (click)="aumentarCantidad()">
+            </div>
             <button class="btn-primary" (click)="agregarAlCarrito()">Añadir al carrito</button>
         </div>
     </div>

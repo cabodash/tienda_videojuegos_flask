@@ -3,6 +3,7 @@ import { VideojuegoCarrito } from '../model/videojuegoCarrito';
 import { TiendaService } from '../services/tienda.service';
 import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { Mensajes } from '../utils/Mensajes';
 
 @Component({
   selector: 'app-carrito',
@@ -30,7 +31,8 @@ export class CarritoComponent {
     this.servicioTienda
       .vaciarCarrito()
       .subscribe(res => (res == "ok")?this.videojuegosCarrito = []:alert("No se pudo vaciar el carrito"));
-  }
+    Mensajes.info("Carrito vaciado");
+    }
   realizarPedido(){
     if( this.videojuegosCarrito.length === undefined || this.videojuegosCarrito.length == 0  ){
       alert("agrega por lo menos un producto al carrito " + 
@@ -43,10 +45,10 @@ export class CarritoComponent {
     this.servicioTienda.borrarProducto(idVideojuego)
     .subscribe(res => {
       if (res == "ok") {
-        alert("Producto borrado");
+        Mensajes.info("Producto borrado del carrito");
         this.videojuegosCarrito = this.videojuegosCarrito.filter(i => i.videojuego.id !== idVideojuego);
       } else {
-        alert("No se pudo borrar el videojuego");
+        Mensajes.error("Hubo un problema al borrar el productod el carrito");
       }
     })
   }
