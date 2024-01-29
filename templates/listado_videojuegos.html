@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='css/inicio.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='css/listado_videojuegos.css') }}"
-    />
-    <title>Listado Videojuegos</title>
-  </head>
 
-  <body>
-    {% include "menu.html"%}
-    <div class="navbar"><a class="btn-primary" href="registrar-videojuego">Nuevo videojuego</a></div>
-    <h2 >listado de videojuegos</h2>
-    <div class="contenedor-items">
-      {% for v in videojuegos %}
-      <div class="item" *ngFor="let v of videojuegos">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/inicio.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/listado_videojuegos.css') }}" />
+  <title>Listado Videojuegos</title>
+</head>
+
+<body>
+  {% include "menu.html"%}
+  <div class="titulo-nuevo-videojuego">
+    <a class="btn-primary" href="registrar-videojuego">Nuevo videojuego</a>
+    <h2>listado de videojuegos</h2>
+    <div class="nada"></div>
+  </div>
+  <div class="contenedor-items">
+    {% for v in videojuegos %}
+    {% if v.alta == false %}
+    <div class="item" style="background-color: rgb(53, 41, 41);">
+      {% else %}
+      <div class="item">
+        {% endif %}
         <h3><span>{{v.nombre}}</span></h3>
         <img alt="imagen del producto" class="imagen-item" src="/imagen-videojuego/{{v.id}}" />
         <p>Precio: <span>{{v.precio}}</span>€</p>
@@ -31,14 +31,19 @@
         <p>Genero: <span>{{v.genero}}</span></p>
         <p>Fecha de lanzamiento: <span>{{v.fecha_lanzamiento}}</span></p>
         <p>Descripcion: <span>{{v.descripcion}}</span></p>
-        <a
-          class="btn-primary"
-          href="borrar-videojuego/{{v.id}}"
-          onclick="confirm('Estas seguro/a?')"
-          >Borrar producto</a
-        >
+        <input class="alta" type="checkbox" checked="{{v.alta}}" style="display: none;">
+        <div class="item-enlaces">
+          {% if v.alta == false %}
+          <a class="btn-primary-red" href="editar-videojuego/{{v.id}}">Editar</a>
+          <a class="btn-primary-red" href="alta-videojuego/{{v.id}}">Dar de Alta</a>
+          {% else %}
+          <a class="btn-primary" href="editar-videojuego/{{v.id}}">Editar</a>
+          <a class="btn-primary" href="baja-videojuego/{{v.id}}">Dar de Baja</a>
+          {% endif %}
+        </div>
       </div>
       {% endfor %}
     </div>
-  </body>
+</body>
+
 </html>

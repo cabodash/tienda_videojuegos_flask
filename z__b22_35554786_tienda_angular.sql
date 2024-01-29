@@ -39,20 +39,21 @@ CREATE TABLE `pedidos` (
   `tarjeta` bigint(20) DEFAULT NULL,
   `comentario` varchar(191) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `user_agent` varchar(1200) COLLATE utf8mb4_unicode_520_ci NOT NULL
+  `user_agent` varchar(1200) COLLATE utf8mb4_unicode_520_ci NOT NULL, 
+  `alta` BOOLEAN NOT NULL DEFAULT TRUE;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`id`, `nombre`, `apellidos`, `direccion`, `tarjeta`, `comentario`, `ip`, `user_agent`) VALUES
-(2, 'alejandro', 'cabo guisado', 'calle de las encinas 27, municipio, madrid', 1234123412341234, 'comentario adicional', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-(3, 'alejandro', 'cabo guisado', 'calle de las encinas 27, municipio, madrid', 1234123412341234, 'comentario adicional', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-(10, 'asdasda', 'asdasdad', 'dasdadasd', 1234123412341234, 'asdadadada', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-(11, 'asdasda', 'asdasdad', 'dasdadasd', 1234123412341234, 'asdadadada', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-(12, 'asdfasdf', 'asdfasdf', 'asdfasdf', 1234123412341234, 'asdfasdfasdf', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-(13, 'ahsjkdfgjasd', 'kajsdbfasdf', 'aasdkjfh iugahsdi hiuasd', 1234123412341234, 'aashdbf hjkasdhjfgaishdgf ihagsdyihfgihasdgfhijagsdhjfgajhsdgfjhagsjhdfg jhasgdjkh gahsjg f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+INSERT INTO `pedidos` (`id`, `nombre`, `apellidos`, `direccion`, `tarjeta`, `comentario`, `ip`, `user_agent`, `alta`) VALUES
+(2, 'alejandro', 'cabo guisado', 'calle de las encinas 27, municipio, madrid', 1234123412341234, 'comentario adicional', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 1),
+(3, 'alejandro', 'cabo guisado', 'calle de las encinas 27, municipio, madrid', 1234123412341234, 'comentario adicional', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 1),
+(10, 'asdasda', 'asdasdad', 'dasdadasd', 1234123412341234, 'asdadadada', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 1),
+(11, 'asdasda', 'asdasdad', 'dasdadasd', 1234123412341234, 'asdadadada', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 1),
+(12, 'asdfasdf', 'asdfasdf', 'asdfasdf', 1234123412341234, 'asdfasdfasdf', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 1),
+(13, 'ahsjkdfgjasd', 'kajsdbfasdf', 'aasdkjfh iugahsdi hiuasd', 1234123412341234, 'aashdbf hjkasdhjfgaishdgf ihagsdyihfgihasdgfhijagsdhjfgajhsdgfjhagsjhdfg jhasgdjkh gahsjg f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 1);
 
 -- --------------------------------------------------------
 

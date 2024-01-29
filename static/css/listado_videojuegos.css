@@ -36,8 +36,53 @@ body {
     -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+.green{
+    background-color: rgb(27, 100, 0);
+    color: white;
+}
+.green:hover{
+    background-color: rgb(20, 73, 0);
+    color: #4d5f45;
+}
 
-h2{
+
+.btn-primary-red {
+    white-space: nowrap;
+    background-color: #E60012;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+}
+
+.btn-primary-red:hover {
+    background-color: #77000a;
+    color: #ffb7bd;
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px);
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.titulo-nuevo-videojuego{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+.nada{
+    width: 170px;
+}
+
+h2 {
     width: -moz-fit-content;
     width: fit-content;
     margin: 20px auto;
@@ -79,4 +124,15 @@ h2{
     aspect-ratio: 19 / 11;
     border-radius: 10px;
     object-fit: cover;
+}
+
+
+.item-enlaces {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px 0;
+    width: 100%;
+    gap: 2em;
+    position: relative;
 }

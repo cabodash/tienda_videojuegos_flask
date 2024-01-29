@@ -13,8 +13,38 @@ def registrar_videojuego( nombre, descripcion , precio , plataforma, genero, des
     return cursor.lastrowid #Devuelve el id de la ultima insercion
 
 
+def guardar_cambios_videojuego(id, nombre, descripcion , precio , plataforma, genero, desarrollador, fecha_lanzamiento):
+    conexion = conn.conectar()
+    sql = "UPDATE videojuegos SET nombre = %s, descripcion = %s, precio = %s, plataforma = %s, genero = %s, desarrollador = %s, fecha_lanzamiento = %s WHERE id = %s"
+    valores = (nombre, descripcion , precio , plataforma, genero, desarrollador, fecha_lanzamiento, id)
+    cursor = conexion.cursor()
+    cursor.execute(sql, valores)
+    conexion.commit()
+    cursor.close()
+    conexion.close()
+    return id
+
+
+
 
 def obtener_videojuegos(busqueda=None):
+    print(busqueda)
+    conexion = conn.conectar()
+    sql = "SELECT * FROM videojuegos WHERE alta = true AND (nombre LIKE %s OR descripcion LIKE %s OR precio LIKE %s OR plataforma LIKE %s OR genero LIKE %s OR desarrollador LIKE %s OR fecha_lanzamiento LIKE %s)"
+    #Comprobamos si viene elgun parametro de busqueda
+    if busqueda is None:
+        valores = ('%', '%', '%', '%', '%', '%', '%')
+    else:
+        busqueda = f"%{busqueda}%"  # Permitir que la búsqueda no sea exacta
+        valores = (busqueda, busqueda, busqueda, busqueda, busqueda, busqueda, busqueda)
+    cursor = conexion.cursor(dictionary=True)
+    cursor.execute(sql, valores)
+    videojuegos = cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return videojuegos
+
+def obtener_videojuegos_admin(busqueda=None):
     print(busqueda)
     conexion = conn.conectar()
     sql = "SELECT * FROM videojuegos WHERE nombre LIKE %s OR descripcion LIKE %s OR precio LIKE %s OR plataforma LIKE %s OR genero LIKE %s OR desarrollador LIKE %s OR fecha_lanzamiento LIKE %s"
@@ -31,11 +61,12 @@ def obtener_videojuegos(busqueda=None):
     conexion.close()
     return videojuegos
 
-def borrar_videojuego(id):
+
+def actualizar_estado_videojuego(id, estado):
     conexion = conn.conectar()
-    sql = "DELETE FROM videojuegos WHERE id = %s"
+    sql = "UPDATE videojuegos SET alta = %s WHERE id = %s"
     cursor = conexion.cursor()
-    cursor.execute(sql, (id,))
+    cursor.execute(sql, (estado, id))
     conexion.commit()
     cursor.close()
     conexion.close()
@@ -51,6 +82,10 @@ def obtener_videojuego_por_id(id):
     cursor.close()
     conexion.close()
     return videojuego
+
+
+
+#Funciones Carrito
 
 def obtener_productos_carrito(productos_sesion):
     ids_sql = []
@@ -77,6 +112,8 @@ def obtener_productos_carrito(productos_sesion):
     return respuesta
 
 
+
+#Funciones Pedido
 def registrar_pedido(nombre, apellidos, direccion, tarjeta, comentario, ip, user_agent, productos_carrito):
     conexion = conn.conectar()
     sql = "insert into pedidos (nombre, apellidos, direccion, tarjeta, comentario, ip, user_agent) values(%s,%s,%s,%s, %s, %s ,%s)"
@@ -94,8 +131,7 @@ def registrar_pedido(nombre, apellidos, direccion, tarjeta, comentario, ip, user
     cur.close()
     conexion.close()
     
-
-    
+  
 def obtener_pedidos():
     conexion = conn.conectar()
     sql ='''SELECT p.id, p.nombre as nombre_pedido, p.apellidos, p.direccion, p.tarjeta, p.comentario, v.nombre as nombre_videojuego, v.precio, v.descripcion 

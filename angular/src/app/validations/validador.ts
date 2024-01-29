@@ -7,11 +7,11 @@ import { Injectable } from "@angular/core";
 
 export class Validador {
 
-    regexp_nombre: RegExp = /^[a-z áéíóú]{2,20}$/g;
-    regexp_ape: RegExp = /^[a-z áéíóú]{2,30}$/g;
-    regexp_direccion: RegExp = /^[a-zA-Z0-9 .,áéíóúñ\\:/ºª]{5,50}$/;
+    regexp_nombre: RegExp = /^[a-z áéíóú]{2,20}$/i;
+    regexp_ape: RegExp = /^[a-z áéíóú]{2,30}$/i;
+    regexp_direccion: RegExp = /^[a-zA-Z0-9 .,áéíóúñ\\:/ºª]{5,50}$/i;
     regexp_numero_tarjeta: RegExp = /^[0-9]{16}$/;
-    regexp_com: RegExp = /^[a-z .,áéíóú]{2,200}$/g;
+    regexp_com: RegExp = /^[a-zA-Z0-9 .,áéíóú]{2,200}$/i;
 
 
 
@@ -75,7 +75,7 @@ export class Validador {
         if (this.regexp_com.test(com)) {
             return true;
         } else {
-            alert("El comentario solo puede letras, puntos y comas y ser de maximo 200 caracteres");
+            alert("El comentario solo puede letras, numeros, puntos y comas y ser de maximo 200 caracteres");
             return false;
         }
     }
